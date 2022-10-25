@@ -1,6 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
+import { toast } from 'react-toastify';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/UserContext';
@@ -9,7 +10,7 @@ import { AuthContext } from '../../../contexts/UserContext';
 
 
 const Registration = () => {
-const {createUser}=useContext(AuthContext)
+const {createUser,verifyEmail}=useContext(AuthContext)
     const handleSubmit=(event)=>{
         event.preventDefault();
         const form=event.target
@@ -25,6 +26,7 @@ const {createUser}=useContext(AuthContext)
             const user = result.user;
 
             console.log("Signed ",user)
+            form.reset()
            
           })
           .catch((error) => {
@@ -32,6 +34,12 @@ const {createUser}=useContext(AuthContext)
             const errorMessage = error.message;
             console.log(errorMessage)
             // ..
+          });
+
+          verifyEmail()
+          .then(() => {
+            toast.success('Please check Your email for verification')
+        
           });
 
     }
@@ -59,6 +67,7 @@ const {createUser}=useContext(AuthContext)
             <Form.Label>Password</Form.Label>
             <Form.Control name="password" type="password" placeholder="Password" required />
         </Form.Group>
+        
       <Button variant="primary" type="submit">
         Register
       </Button>
