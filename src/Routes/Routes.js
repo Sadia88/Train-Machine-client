@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Blogs from "../Components/Blogs/Blogs";
 import Courses from "../Components/Courses/Courses";
 import FAQ from "../Components/FAQ/FAQ";
 import Home from "../Components/Home/Home";
@@ -23,6 +24,11 @@ export const routes=createBrowserRouter([
                
             },
             {
+                path:'/home',
+                element:<Home></Home>
+               
+            },
+            {
                 path:'/courses',
                 element: <Courses></Courses>,
                 loader: ()=>fetch('https://ml-tutorial-server-sadia88.vercel.app/courses')
@@ -34,6 +40,10 @@ export const routes=createBrowserRouter([
             {
                 path:'/register',
                 element:<Registration></Registration>
+            },
+            {
+                path:'/blog',
+                element:<Blogs></Blogs>
             },
            
            

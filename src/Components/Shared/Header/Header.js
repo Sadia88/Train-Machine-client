@@ -1,39 +1,41 @@
 import React from 'react';
+import { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
+import { Button } from 'react-bootstrap/esm';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/UserContext';
 
 const Header = () => {
+const {logOut,user}=useContext(AuthContext)
+    
     return (
         <div>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-          <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
-            </Nav.Link>
+            <Navbar collapseOnSelect expand="lg" bg="light" variant="gray">
+      <Container className='d-flex justify-content-between align-items-center'>
+        <Navbar.Brand className='me-5' ><Link to='/'  className='fs-1 p-4 pe-5  text-decoration-none fw-bold'>Train Machine</Link></Navbar.Brand>
+    <>
+    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav" >
+         
+          <Nav className='ms-5 fw-bolder' >
+            
+          <Link to="/home" className='p-2 ms-5 text-decoration-none'>Home</Link>
+            <Link to="/courses" className='p-2 text-decoration-none'>Courses</Link>
+             <Link to="/faq" className='p-2 text-decoration-none'>FAQ</Link>
+            <Link to="/blog" className='p-2 text-decoration-none'>Blog</Link>
+            {
+                user?.uid?
+                <Button variant="outline-primary" className=' p-2'  onClick={logOut}>Log Out</Button>
+            :
+           <> <Link to="/login" className='p-2 text-decoration-none'>Login</Link>
+           <Link to="/register" className='p-2 text-decoration-none'>Register</Link></>
+            }
+            
           </Nav>
         </Navbar.Collapse>
+    </>
       </Container>
     </Navbar>
         </div>
