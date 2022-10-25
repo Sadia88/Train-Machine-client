@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/UserContext';
 import { BsGoogle,BsGithub } from "react-icons/bs";
 const Login = () => {
-    const {signIn,googleSignIn}=useContext(AuthContext)
+    const {signIn,googleSignIn,githubSignIn}=useContext(AuthContext)
     const handleSubmit=(event)=>{
         event.preventDefault();
         const form=event.target
@@ -47,6 +47,24 @@ const Login = () => {
        console.log(errorMessage)
       });
   }
+
+  const handleGithubSignin=()=>{
+    githubSignIn()
+    .then((result) => {
+       
+        const user = result.user;
+        console.log(user)
+        // ...
+      }).catch((error) => {
+        
+        const errorMessage = error.message;
+        console.log(errorMessage)
+       
+      });
+  }
+
+
+  
     return (
    
         
@@ -70,7 +88,7 @@ const Login = () => {
 
       <ButtonGroup >
             <Button variant="outline-primary" className='m-2' onClick={handleGoogleSignin} ><BsGoogle></BsGoogle> Login with Google</Button><br />
-            <Button variant="outline-dark" className='m-2'><BsGithub></BsGithub>Login with Github</Button>
+            <Button variant="outline-dark" className='m-2' onClick={handleGithubSignin}><BsGithub></BsGithub>Login with Github</Button>
       
     </ButtonGroup>
     </Form>

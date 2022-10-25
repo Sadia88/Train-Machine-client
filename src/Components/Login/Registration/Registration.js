@@ -5,12 +5,15 @@ import { toast } from 'react-toastify';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/UserContext';
+import { useState } from 'react';
 
 
 
 
 const Registration = () => {
-const {createUser,verifyEmail}=useContext(AuthContext)
+const {createUser,verifyEmail,updateUserProfile}=useContext(AuthContext)
+
+const [error,setError]=useState('')
     const handleSubmit=(event)=>{
         event.preventDefault();
         const form=event.target
@@ -27,22 +30,50 @@ const {createUser,verifyEmail}=useContext(AuthContext)
 
             console.log("Signed ",user)
             form.reset()
+            handleUpdateUserProfile(name,photoURL)
+            handleVerifyEmail()
            
           })
           .catch((error) => {
             
             const errorMessage = error.message;
-            console.log(errorMessage)
+            setError(errorMessage)
             // ..
           });
 
-          verifyEmail()
-          .then(() => {
-            toast.success('Please check Your email for verification')
-        
-          });
+         
 
     }
+
+
+    const handleVerifyEmail=()=>{
+        verifyEmail()
+        .then(() => {
+          toast.success('Please check Your email for verification')
+      
+        });
+     }
+
+
+
+     const handleUpdateUserProfile=(name,photoURL)=>{
+        const profile={
+            displayName: name, photoURL: photoURL
+        
+        }
+        
+        
+            updateUserProfile(profile)
+            .then(() => {
+                // Profile updated!
+                // ...
+              }).catch((error) => {
+              console.error(error)
+              });
+           
+        
+        }
+
     return (
    
         
@@ -67,6 +98,7 @@ const {createUser,verifyEmail}=useContext(AuthContext)
             <Form.Label>Password</Form.Label>
             <Form.Control name="password" type="password" placeholder="Password" required />
         </Form.Group>
+        <p className='text-danger'>{error}</p>
         
       <Button variant="primary" type="submit">
         Register

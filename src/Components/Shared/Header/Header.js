@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/UserContext';
 
 const Header = () => {
-const {logOut,user}=useContext(AuthContext)
-    
+const {logOut,user,UserProfile}=useContext(AuthContext)
+    console.log('navbar',user,UserProfile)
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="gray">
