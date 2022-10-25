@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
-import { Button } from 'react-bootstrap/esm';
+
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/UserContext';
+import { FaUserCircle } from 'react-icons/fa';
+import { Button, Image } from 'react-bootstrap';
 
 const Header = () => {
 const {logOut,user,UserProfile}=useContext(AuthContext)
+const [userName,setUserName]=useState('')
     console.log('navbar',user,UserProfile)
+
+    const hover=()=>{
+        setUserName(user?.displayName)
+    }
+    const unHover=()=>{
+        setUserName('')
+    }
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="gray">
@@ -27,11 +37,19 @@ const {logOut,user,UserProfile}=useContext(AuthContext)
             <Link to="/blog" className='p-2 text-decoration-none'>Blog</Link>
             {
                 user?.uid?
-                <Button variant="outline-primary" className=' p-2'  onClick={logOut}>Log Out</Button>
+                <Button variant="outline-primary" className=' p-2 me-2'  onClick={logOut}>Log Out</Button>
             :
            <> <Link to="/login" className='p-2 text-decoration-none'>Login</Link>
-           <Link to="/register" className='p-2 text-decoration-none'>Register</Link></>
+           <Link to="/register" className='p-2 text-decoration-none me-2'>Register</Link></>
             }
+
+            <>
+            {
+                user?.photoURL ? <>  <Image onMouseEnter={hover} onMouseLeave={unHover} roundedCircle src={user?.photoURL} style={{height:'35px',}}>
+                    
+                </Image> {userName} </> : <FaUserCircle></FaUserCircle>
+              }
+            </>
             
           </Nav>
         </Navbar.Collapse>

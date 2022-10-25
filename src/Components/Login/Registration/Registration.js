@@ -19,9 +19,9 @@ const [error,setError]=useState('')
         const form=event.target
         const email=form.email.value
         const password=form.password.value
-        const name=form.name.value
+        const displayName=form.displayName.value
         const photoURL=form.photoURL.value
-        console.log(name,email,password)
+        console.log(displayName,email,password)
 
         createUser(email,password)
         .then((result) => {
@@ -30,7 +30,7 @@ const [error,setError]=useState('')
 
             console.log("Signed ",user)
             form.reset()
-            handleUpdateUserProfile(name,photoURL)
+            
             handleVerifyEmail()
            
           })
@@ -56,23 +56,13 @@ const [error,setError]=useState('')
 
 
 
-     const handleUpdateUserProfile=(name,photoURL)=>{
-        const profile={
-            displayName: name, photoURL: photoURL
-        
-        }
+     
         
         
-            updateUserProfile(profile)
-            .then(() => {
-                // Profile updated!
-                // ...
-              }).catch((error) => {
-              console.error(error)
-              });
+            
            
         
-        }
+        
 
     return (
    
@@ -82,7 +72,7 @@ const [error,setError]=useState('')
         <Form className='mx-auto container' onSubmit={handleSubmit}>
        <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Your Name</Form.Label>
-            <Form.Control name="name" type="text" placeholder="Your Name" />
+            <Form.Control name="displayName" type="text" placeholder="Your Name" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Photo URL</Form.Label>
