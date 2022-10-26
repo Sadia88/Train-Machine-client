@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Form } from "react-bootstrap";
 import ReactSwitch from 'react-switch';
 import './ThemeContext.css'
-
+;
 
 
 

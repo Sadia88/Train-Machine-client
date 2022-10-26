@@ -31,28 +31,28 @@ const [userName,setUserName]=useState('')
     <Navbar.Toggle aria-controls="responsive-navbar-nav" className='me-0'/>
         <Navbar.Collapse id="responsive-navbar-nav" className='me-0 flex-basis-0 flex-grow-0' >
          
-          <Nav className='ms-5 fw-bolder' >
+          <Nav className='ms-5 ' >
             
-          <Link to="/home" className='p-2 ms-5 text-decoration-none'>Home</Link>
-            <Link to="/courses" className='p-2 text-decoration-none'>Courses</Link>
-             <Link to="/faq" className='p-2 text-decoration-none'>FAQ</Link>
-            <Link to="/blog" className='p-2 text-decoration-none'>Blog</Link>
+          <Link to="/home" className='p-2 ms-5 text-decoration-none fw-bolder'>Home</Link>
+            <Link to="/courses" className='p-2 text-decoration-none fw-bolder'>Courses</Link>
+             <Link to="/faq" className='p-2 text-decoration-none fw-bolder'>FAQ</Link>
+            <Link to="/blog" className='p-2 text-decoration-none fw-bolder'>Blog</Link>
             {
                 user?.uid?
-                <Button variant="outline-primary" className=' p-2 me-2'  onClick={logOut}>Log Out</Button>
+                <Button variant="outline-primary fw-bolder" className=' p-2 me-2'  onClick={logOut}>Log Out</Button>
             :
-           <> <Link to="/login" className='p-2 text-decoration-none'>Login</Link>
-           <Link to="/register" className='p-2 text-decoration-none me-2'>Register</Link></>
+           <> <Link to="/login" className='p-2 text-decoration-none fw-bolder'>Login</Link>
+           <Link to="/register" className='p-2 text-decoration-none me-2 fw-bolder'>Register</Link></>
             }
 
             <>
             {
-                user?.photoURL ? <>  <Image onMouseEnter={hover} onMouseLeave={unHover} roundedCircle src={user?.photoURL} style={{height:'35px',}}>
+                user?.photoURL ? <>  <Image onMouseEnter={hover} onMouseLeave={unHover} roundedCircle src={user?.photoURL} style={{height:'40px',}}>
                     
-                </Image> {userName} </> : <FaUserCircle></FaUserCircle>
+                </Image> {userName} </> : <FaUserCircle style={{height:'35px'}} ></FaUserCircle>
               }
             </>
-          <div className='p-2'>
+          <div className='p-2 text-black'>
           
           <ThemeContext></ThemeContext>
           </div>
