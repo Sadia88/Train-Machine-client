@@ -7,6 +7,7 @@ import FAQ from "../Components/FAQ/FAQ";
 import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login/Login";
 import Registration from "../Components/Login/Registration/Registration";
+import NotFound from "../Components/NotFound/NotFound";
 import Main from "../layouts/Main"
 
 
@@ -58,6 +59,10 @@ export const routes=createBrowserRouter([
             {
                 path:'/login',
                 element: <Login></Login>
+            },
+            {
+                path:'/*',
+                element: <NotFound></NotFound>
             }
         ]
     }

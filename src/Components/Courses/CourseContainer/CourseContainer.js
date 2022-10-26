@@ -1,20 +1,28 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { useLoaderData } from 'react-router-dom';
 import Image from 'react-bootstrap/Image'
+import Pdf from "react-to-pdf";
 import {  BsFillBookmarkFill ,BsFillShareFill,BsStarFill,BsEyeFill} from "react-icons/bs";
 
 
 const CourseContainer = () => {
+    const ref = React.createRef()
     const courseDetails=useLoaderData()
     const {id,name,learners_enrolled,title,image_url,instructor,details,rating}=courseDetails
     return (
 
 
 <div className='container m-5 text-center  mx-auto ' style={{ height: '50rem', width:'40rem' }}>
-
+<div className='float-end'>
+           <Pdf targetRef={ref} filename="fileName.pdf" className='text-align-center'>
+        {({ toPdf }) => <Button onClick={toPdf}>Generate Pdf</Button>}
+         </Pdf>
+           </div>
+<div>
+<div ref={ref} className='text-align-center mx-auto ps-5 '>
 <h1>{name}</h1>
-<Card className="mb-5">
+<Card className="mb-5 " >
 
       <Card.Header className='d-flex justify-content-between  align-items-center'>
         
@@ -31,6 +39,7 @@ const CourseContainer = () => {
             <p><strong>Enrollment Start :</strong> {instructor?.enrollment_start}</p>
             <p><strong>Enrollment End :</strong> {instructor?.enrollment_end}</p>
            </div>
+          
 
       </Card.Header>
       <Card.Body>
@@ -52,6 +61,8 @@ const CourseContainer = () => {
         </div>
       </Card.Footer>
     </Card>
+</div>
+</div>
           </div>
         
     );
