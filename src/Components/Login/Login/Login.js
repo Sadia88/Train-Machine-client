@@ -6,6 +6,8 @@ import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/UserContext';
 import { BsGoogle,BsGithub } from "react-icons/bs";
+
+
 const Login = () => {
     const {signIn,googleSignIn,githubSignIn}=useContext(AuthContext)
     const handleSubmit=(event)=>{
@@ -68,9 +70,9 @@ const Login = () => {
     return (
    
         
-    <div className='shadow p-2 border rounded mx-auto w-25 mt-5 mb-5 '>
-        <h1 >Login</h1>
-        <Form className='mx-auto container' onSubmit={handleSubmit}>
+    <div className='shadow p-2 border rounded mx-auto w-25 mt-5 mb-5 main' >
+        <h1 className="sign">Login</h1>
+        <Form className='mx-auto container form1' onSubmit={handleSubmit}>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
@@ -92,6 +94,7 @@ const Login = () => {
       
     </ButtonGroup>
     </Form>
+    
     </div>
   
    

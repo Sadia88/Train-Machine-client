@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
-
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/UserContext';
 import { FaUserCircle } from 'react-icons/fa';
 import { Button, Image } from 'react-bootstrap';
+import ReactSwitch from 'react-switch';
+import ThemeContext from '../../../contexts/ThemeContext';
+
 
 const Header = () => {
 const {logOut,user,UserProfile}=useContext(AuthContext)
@@ -26,8 +28,8 @@ const [userName,setUserName]=useState('')
       <Container className='d-flex justify-content-between align-items-center'>
         <Navbar.Brand className='me-5' ><Link to='/'  className='fs-1 p-4 pe-5  text-decoration-none fw-bold'>Train Machine</Link></Navbar.Brand>
     <>
-    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav" >
+    <Navbar.Toggle aria-controls="responsive-navbar-nav" className='me-0'/>
+        <Navbar.Collapse id="responsive-navbar-nav" className='me-0 flex-basis-0 flex-grow-0' >
          
           <Nav className='ms-5 fw-bolder' >
             
@@ -50,10 +52,16 @@ const [userName,setUserName]=useState('')
                 </Image> {userName} </> : <FaUserCircle></FaUserCircle>
               }
             </>
-            
+          <div className='p-2'>
+          
+          <ThemeContext></ThemeContext>
+          </div>
           </Nav>
         </Navbar.Collapse>
     </>
+
+
+    
       </Container>
     </Navbar>
         </div>
