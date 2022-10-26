@@ -3,7 +3,7 @@ import Accordion from 'react-bootstrap/Accordion';
 
 const FAQ = () => {
     return (
-        <Accordion className='container mt-5'>
+        <Accordion className='container mt-5 mb-5 pb-5'>
         <Accordion.Item eventKey="0">
           <Accordion.Header>What are the technical requirements for the courses?</Accordion.Header>
           <Accordion.Body>

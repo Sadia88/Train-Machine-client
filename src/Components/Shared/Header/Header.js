@@ -24,7 +24,7 @@ const [userName,setUserName]=useState('')
     }
     return (
         <div>
-            <Navbar collapseOnSelect expand="lg" bg="light" variant="gray">
+            <Navbar collapseOnSelect expand="lg" bg="light" variant="gray" className='shadow-lg p-3'>
       <Container className='d-flex justify-content-between align-items-center'>
         <Navbar.Brand className='me-5' ><Link to='/'  className='fs-1 p-4 pe-5  text-decoration-none fw-bold'>Train Machine</Link></Navbar.Brand>
     <>
@@ -54,7 +54,9 @@ const [userName,setUserName]=useState('')
                 </Image>  </div> : <FaUserCircle style={{height:'35px',}} ></FaUserCircle>
               }
             </>
-          
+          <div className='ps-3'>
+            <ThemeContext></ThemeContext>
+          </div>
           </Nav>
         </Navbar.Collapse>
     </>
