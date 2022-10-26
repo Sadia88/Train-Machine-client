@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/UserContext';
 import { useState } from 'react';
 
@@ -12,7 +12,7 @@ import { useState } from 'react';
 
 const Registration = () => {
 const {createUser,verifyEmail,updateUserProfile}=useContext(AuthContext)
-
+const navigate=useNavigate()
 const [error,setError]=useState('')
     const handleSubmit=(event)=>{
         event.preventDefault();
@@ -32,6 +32,7 @@ const [error,setError]=useState('')
             form.reset()
             
             handleVerifyEmail()
+            navigate('/login');
            
           })
           .catch((error) => {

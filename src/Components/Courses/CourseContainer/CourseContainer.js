@@ -65,7 +65,7 @@ const CourseContainer = () => {
       <Card.Footer >
     
 
-        <Button variant='dark'><Link to='/checkout' className='text-decoration-none fw-bolder'>Get premium access</Link></Button>
+        <Button variant='dark'><Link to={`/courses/course/checkout/${id}`} className='text-decoration-none fw-bolder'>Get premium access</Link></Button>
       </Card.Footer>
     </Card>
 </div>

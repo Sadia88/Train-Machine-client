@@ -50,14 +50,17 @@ const verifyEmail=()=>{
 }
 
 const logOut=()=>{
+    setLoader(true)
     return signOut(auth)
 }
    
 const googleSignIn=()=>{
+    setLoader(true)
     return signInWithPopup(auth, googleProvider)
 }
 
 const githubSignIn=()=>{
+    setLoader(true)
     return signInWithPopup(auth,githubProvider)
 }
 

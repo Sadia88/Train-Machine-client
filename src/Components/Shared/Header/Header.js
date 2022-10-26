@@ -14,7 +14,7 @@ import ThemeContext from '../../../contexts/ThemeContext';
 const Header = () => {
 const {logOut,user,UserProfile}=useContext(AuthContext)
 const [userName,setUserName]=useState('')
-    console.log('navbar',user,UserProfile)
+    
 
     const hover=()=>{
         setUserName(user?.displayName)
@@ -42,17 +42,17 @@ const [userName,setUserName]=useState('')
                 <Button variant="outline-primary fw-bolder" className=' p-2 me-2'  onClick={logOut}>Log Out</Button>
             :
            <> <Link to="/login" className='p-2 text-decoration-none fw-bolder'>Login</Link>
-           <Link to="/register" className='p-2 text-decoration-none me-2 fw-bolder'>Register</Link></>
+           </>
             }
-
+<Link to="/register" className='p-2 text-decoration-none me-2 fw-bolder'>Register</Link>
             <>
             {
                 user?.photoURL ? <>  <Image onMouseEnter={hover} onMouseLeave={unHover} roundedCircle src={user?.photoURL} style={{height:'40px',}}>
                     
-                </Image> {userName} </> : <FaUserCircle style={{height:'35px'}} ></FaUserCircle>
+                </Image> {userName} </> : <FaUserCircle style={{height:'35px',}} ></FaUserCircle>
               }
             </>
-          <div className='p-2 text-black'>
+          <div className='p-2 '>
           
           <ThemeContext></ThemeContext>
           </div>

@@ -10,6 +10,7 @@ import Login from "../Components/Login/Login/Login";
 import Registration from "../Components/Login/Registration/Registration";
 import NotFound from "../Components/NotFound/NotFound";
 import Main from "../layouts/Main"
+import PrivateRoutes from "./PrivateRoutes";
 
 
 
@@ -43,6 +44,7 @@ export const routes=createBrowserRouter([
                 element: <CourseContainer></CourseContainer>,
                 loader: ({params})=>fetch(`https://ml-tutorial-server-sadia88.vercel.app/courses/course/${params.id}`)
             },
+            
             {
                 path:'/faq',
                 element:<FAQ></FAQ>
@@ -62,8 +64,9 @@ export const routes=createBrowserRouter([
                 element: <Login></Login>
             },
             {
-                path:'/checkout',
-                element: <CheckOut></CheckOut>
+                path:'/courses/course/checkout/:id',
+                element: <PrivateRoutes><CheckOut></CheckOut></PrivateRoutes>,
+                loader: ({params})=>fetch(`https://ml-tutorial-server-sadia88.vercel.app/courses/course/checkout/${params.id}`)
             },
             {
                 path:'/*',

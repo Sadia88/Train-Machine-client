@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import { ButtonGroup } from 'react-bootstrap/esm';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/UserContext';
 import { BsGoogle,BsGithub } from "react-icons/bs";
+import { toast } from 'react-toastify';
 
 
 const Login = () => {
-    const {signIn,googleSignIn,githubSignIn}=useContext(AuthContext)
+    const {signIn,googleSignIn,githubSignIn,setLoader}=useContext(AuthContext)
+    const [error,setError]=useState('')
+    const navigate=useNavigate()
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
     const handleSubmit=(event)=>{
         event.preventDefault();
         const form=event.target
@@ -25,13 +30,23 @@ const Login = () => {
             const user = result.user;
             console.log(user)
             form.reset()
-           
-          })
-          .catch((error) => {
             
-            const errorMessage = error.message;
-            console.log(errorMessage)
-          });
+            if(user.emailVerified){
+              navigate(from, { replace: true });
+             }
+              else
+              {
+                  toast.error('Your email is not verified.Please verify?')
+              }
+                })
+      
+                .catch(error => {
+                  console.error(error)
+                  setError(error.message);
+              })
+              .finally(() => {
+                  setLoader(false);
+              })
 
     }
 
@@ -42,12 +57,17 @@ const Login = () => {
     
         const user = result.user;
         console.log(user)
+        
+          navigate(from, { replace: true });
+         
     
       }).catch((error) => {
         
-        const errorMessage = error.message;
-       console.log(errorMessage)
-      });
+        setError(error.message);
+      })
+      .finally(() => {
+          setLoader(false);
+      })
   }
 
   const handleGithubSignin=()=>{
@@ -56,13 +76,15 @@ const Login = () => {
        
         const user = result.user;
         console.log(user)
+        navigate(from, { replace: true });
         // ...
       }).catch((error) => {
         
-        const errorMessage = error.message;
-        console.log(errorMessage)
-       
-      });
+        setError(error.message);
+              })
+              .finally(() => {
+                  setLoader(false);
+              })
   }
 
 
@@ -83,9 +105,11 @@ const Login = () => {
             <Form.Label>Password</Form.Label>
             <Form.Control name="password" type="password" placeholder="Password" required />
         </Form.Group>
+        <p className='text-danger'>{error}</p>
       <Button variant="primary" type="submit">
         Login
       </Button>
+     
       <p>Don't have an account? <br /> <Link to='/register'>Create New Account</Link></p>
 
       <ButtonGroup >
