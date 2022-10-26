@@ -43,6 +43,10 @@ const signIn=(email,password)=>{
 const UserProfile=()=>{
     return auth.currentUser;
 }
+const updateUserProfile=(profile)=>{
+
+    return updateProfile(auth.currentUser,profile)
+}
 
 const verifyEmail=()=>{
     setLoader(true)
@@ -64,7 +68,7 @@ const githubSignIn=()=>{
     return signInWithPopup(auth,githubProvider)
 }
 
-    const authInfo={user,setUser,createUser,loader,setLoader,signIn,googleSignIn,logOut,verifyEmail,githubSignIn,UserProfile}
+    const authInfo={user,setUser,createUser,loader,setLoader,signIn,googleSignIn,logOut,verifyEmail,githubSignIn,UserProfile,updateUserProfile}
     return (
         <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
     );

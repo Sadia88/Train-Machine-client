@@ -32,30 +32,29 @@ const [userName,setUserName]=useState('')
         <Navbar.Collapse id="responsive-navbar-nav" className='me-0 flex-basis-0 flex-grow-0' >
          
           <Nav className='ms-5 ' >
-            
+          
           <Link to="/home" className='p-2 ms-5 text-decoration-none fw-bolder'>Home</Link>
             <Link to="/courses" className='p-2 text-decoration-none fw-bolder'>Courses</Link>
              <Link to="/faq" className='p-2 text-decoration-none fw-bolder'>FAQ</Link>
             <Link to="/blog" className='p-2 text-decoration-none fw-bolder'>Blog</Link>
             {
-                user?.uid?
+                user?.emailVerified
+                ?
                 <Button variant="outline-primary fw-bolder" className=' p-2 me-2'  onClick={logOut}>Log Out</Button>
             :
            <> <Link to="/login" className='p-2 text-decoration-none fw-bolder'>Login</Link>
+           <Link to="/register" className='p-2 text-decoration-none me-2 fw-bolder'>Register</Link>
            </>
             }
-<Link to="/register" className='p-2 text-decoration-none me-2 fw-bolder'>Register</Link>
+
             <>
             {
-                user?.photoURL ? <>  <Image onMouseEnter={hover} onMouseLeave={unHover} roundedCircle src={user?.photoURL} style={{height:'40px',}}>
+                user?.photoURL ? <div className='d-block'>  <Image data-toggle="tooltip" data-placement="bottom" title={userName} onMouseEnter={hover} onMouseLeave={unHover} roundedCircle src={user?.photoURL} style={{height:'40px',}}>
                     
-                </Image> {userName} </> : <FaUserCircle style={{height:'35px',}} ></FaUserCircle>
+                </Image>  </div> : <FaUserCircle style={{height:'35px',}} ></FaUserCircle>
               }
             </>
-          <div className='p-2 '>
           
-          <ThemeContext></ThemeContext>
-          </div>
           </Nav>
         </Navbar.Collapse>
     </>

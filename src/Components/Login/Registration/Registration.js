@@ -19,9 +19,9 @@ const [error,setError]=useState('')
         const form=event.target
         const email=form.email.value
         const password=form.password.value
-        const displayName=form.displayName.value
+        const name=form.displayName.value
         const photoURL=form.photoURL.value
-        console.log(displayName,email,password)
+        // console.log(displayName,email,password,photoURL)
 
         createUser(email,password)
         .then((result) => {
@@ -32,6 +32,7 @@ const [error,setError]=useState('')
             form.reset()
             
             handleVerifyEmail()
+            handleUpdateUserProfile(name,photoURL)
             navigate('/login');
            
           })
@@ -54,16 +55,26 @@ const [error,setError]=useState('')
       
         });
      }
-
-
-
+        
      
-        
-        
-            
-           
-        
-        
+const handleUpdateUserProfile=(name,photoURL)=>{
+  const profile={
+      displayName: name, photoURL: photoURL
+  
+  }
+  
+  
+      updateUserProfile(profile)
+      .then(() => {
+          // Profile updated!
+          // ...
+        }).catch((error) => {
+        console.error(error)
+        });
+     
+  
+  }
+  
 
     return (
    
