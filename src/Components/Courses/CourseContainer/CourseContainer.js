@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Image from 'react-bootstrap/Image'
 import Pdf from "react-to-pdf";
 import {  BsFillBookmarkFill ,BsFillShareFill,BsStarFill,BsEyeFill} from "react-icons/bs";
@@ -47,18 +47,25 @@ const CourseContainer = () => {
         <Card.Img variant="top" src={image_url} style={{ height: '15rem', width:'100%' }}   />
         <Card.Text>
      <p>{details}</p>
-        </Card.Text>
-        
-      </Card.Body>
-      <Card.Footer className=" d-flex justify-content-between">
-        <div>
+     <div className=" d-flex justify-content-between">
+     <div>
          <BsStarFill className='text-warning'></BsStarFill>
          <span className='ps-2'>{rating}</span>
         </div>
-        <div>
+        <div >
             <BsEyeFill></BsEyeFill>
             <span className='ps-2'>{learners_enrolled}</span>
         </div>
+
+     </div>
+     
+        </Card.Text>
+        
+      </Card.Body>
+      <Card.Footer >
+    
+
+        <Button variant='dark'><Link to='/checkout' className='text-decoration-none fw-bolder'>Get premium access</Link></Button>
       </Card.Footer>
     </Card>
 </div>
