@@ -42,8 +42,7 @@ const [userName,setUserName]=useState('')
              <Link to="/faq" className='p-2 text-decoration-none fw-bolder'>FAQ</Link>
             <Link to="/blog" className='p-2 text-decoration-none fw-bolder'>Blog</Link>
             {
-                user?.emailVerified
-                ?
+                user?.uid?
                 <Button variant="outline-primary fw-bolder" className=' p-2 me-2'  onClick={logOut}>Log Out</Button>
             :
            <> <Link to="/login" className='p-2 text-decoration-none fw-bolder'>Login</Link>
