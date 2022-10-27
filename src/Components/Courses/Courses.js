@@ -10,13 +10,14 @@ const Courses = () => {
    
     return (
         <Container className='mt-5'>
+          <h1 className='text-center fs-1 mb-5 fw-bold'>Courses we are offering for you</h1>
       <Row className="justify-content-md-center">
         <Col xs='12' lg="3">
 
         {
-            courses.map(course=><p>
-               <Link to={`course/${course.id}`}>{course.name}</Link>
-            </p>)
+            courses.map(course=><li >
+               <Link className='text-decoration-none fs-5 fw-bolder' to={`course/${course.id}`}>{course.name}</Link>
+            </li>)
         }
         </Col>
         

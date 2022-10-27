@@ -26,7 +26,11 @@ const [userName,setUserName]=useState('')
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="gray" className='shadow-lg p-3'>
       <Container className='d-flex justify-content-between align-items-center'>
-        <Navbar.Brand className='me-5' ><Link to='/'  className='fs-1 p-4 pe-5  text-decoration-none fw-bold'>Train Machine</Link></Navbar.Brand>
+        <Navbar.Brand className='me-5' >
+        <img src="https://as2.ftcdn.net/v2/jpg/03/02/54/87/1000_F_302548796_K00smOu6jqnFH4dYH9kVgKVahru1CyLM.jpg" className='rounded-circle' style={{height:'100px',}} alt="" srcset="" />
+          <Link to='/'  className='fs-1 p-4 pe-5  text-decoration-none fw-bold'>Train Machine</Link>
+       
+        </Navbar.Brand>
     <>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" className='me-0'/>
         <Navbar.Collapse id="responsive-navbar-nav" className='me-0 flex-basis-0 flex-grow-0' >
