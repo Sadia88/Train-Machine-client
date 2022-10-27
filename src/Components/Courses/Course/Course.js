@@ -30,7 +30,7 @@ const Course = ({course}) => {
                 
         
                 </Card.Text>
-                <Button variant="outline-primary" className='d-flex justify-content-between pe-3 align-items-center'><Link className=' text-decoration-none fw-bolder' to={`course/${id}`} >View Details</Link></Button>
+                <Button variant="outline-primary " className='d-flex justify-content-between mx-auto px-5 shadow align-items-center'><Link className=' text-decoration-none fw-bolder text-dark text-uppercase' to={`course/${id}`} >View Details</Link></Button>
                 
               </Card.Body>
             </Card>

@@ -3,7 +3,7 @@ import { Button, Card } from 'react-bootstrap';
 import { Link, useLoaderData } from 'react-router-dom';
 import Image from 'react-bootstrap/Image'
 import Pdf from "react-to-pdf";
-import {  BsFillBookmarkFill ,BsFillShareFill,BsStarFill,BsEyeFill} from "react-icons/bs";
+import {  BsFillPersonCheckFill,BsStarFill,BsEyeFill} from "react-icons/bs";
 
 
 const CourseContainer = () => {
@@ -54,7 +54,7 @@ const CourseContainer = () => {
         </div>
         <div >
             <BsEyeFill></BsEyeFill>
-            <span className='ps-2'>{learners_enrolled}</span>
+            <span className='ps-2'> <BsFillPersonCheckFill></BsFillPersonCheckFill>  {learners_enrolled}</span>
         </div>
 
      </div>
